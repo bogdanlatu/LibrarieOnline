@@ -1,0 +1,13 @@
+.qrcode-page {
+    min-height: calc(100vh - 56px);
+    background-image: url(../images/qrcode-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .qrcode-page {
+        min-height: 100vh;
+    }
+}

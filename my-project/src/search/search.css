@@ -1,0 +1,14 @@
+.search-page {
+    min-height: calc(100vh - 56px);
+    background-image: url(../images/search-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    padding-top: 250px;
+}
+
+@media (min-width: 768px) {
+    .search-page {
+        min-height: 100vh;
+    }
+}

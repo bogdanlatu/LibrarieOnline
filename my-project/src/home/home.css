@@ -1,0 +1,22 @@
+.home-page {
+    min-height: calc(100vh - 56px);
+    background-image: url(../images/home-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    text-align: center;
+    color: white;
+}
+
+
+.home-page i {
+    margin-top: 200px;
+    color: white;
+    font-size: 10em;
+}
+
+@media (min-width: 768px) {
+    .home-page {
+        min-height: 100vh;
+    }
+}

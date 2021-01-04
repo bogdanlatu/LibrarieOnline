@@ -1,0 +1,15 @@
+.login-page {
+    min-height: calc(100vh - 56px);
+    background-image: url(../images/user-bg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+
+
+@media (min-width: 768px) {
+    .login-page {
+        min-height: 100vh;
+    }
+}

@@ -1,0 +1,48 @@
+.nav-bar {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: darkgray;
+    position: relative;
+    height: 56px;
+    overflow: auto;
+}
+
+.nav-bar a {
+    text-decoration: none;
+}
+
+.nav-bar i {
+    font-size: 30px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    margin-top: 13px;
+    margin-right: 4vw;
+    margin-left: 4vw;
+}
+
+.nav-bar i:hover {
+    color: red;
+}
+
+@media (min-width: 768px) {
+    .nav-bar {
+        width: 100px;
+        position: fixed;
+        height: 100%;
+    }
+    
+    .nav-bar-items {
+        margin-top: calc((100vh - 340px)/2);
+        margin-left: 0px;
+    }
+    
+    .nav-bar i {
+        display: block;
+        margin-left: 24.28%;
+        margin-bottom: 60px;
+        margin-top: 0px;
+        font-size: 40px;
+    }
+}
