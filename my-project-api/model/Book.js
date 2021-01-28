@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const BookSchema = new mongoose.Schema({
+	cover : {
+		type : String
+	},
 	title : {
 		type : String,
 		required : true
@@ -9,7 +12,7 @@ const BookSchema = new mongoose.Schema({
 		type : String,
 		required : true
 	},
-	cover : {
+	category : {
 		type : String
 	}
 });

@@ -24,6 +24,20 @@ const AdminPage = props => {
         });
     },[]);
     
+    const bookList = () => {
+        const list = books.map(book =>
+                <div className="col-sm-4" key={book._id}>
+                     
+                    <BookItem book={book}/>
+                
+                </div>
+                       
+                    );
+        
+        
+        return list;
+    }
+    
     const onSubmit = e => {
         e.preventDefault();
         AdminService.postBook(book).then(data =>{
@@ -53,6 +67,8 @@ const AdminPage = props => {
     const resetForm = ()=>{
         setBook({title : "", author : "", cover : ""});
     }
+    
+
 
     
     return(
@@ -98,9 +114,7 @@ const AdminPage = props => {
             
             <ul className="list-group">
                 {
-                    books.map(book =>{
-                        return <BookItem key={book._id} book={book}/>
-                    })
+                   bookList()
                 }
             </ul>  
 

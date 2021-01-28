@@ -51,20 +51,20 @@ userRouter.get('/logout',passport.authenticate('jwt', {session : false}),(req,re
 });
 
 userRouter.post('/book',passport.authenticate('jwt',{session : false}),(req,res)=>{
-    const book = new Book(req.body);
-    book.save(err=>{
-        if(err)
-            res.status(500).json({message : {msgBody : "Prima eroare", msgError: true}});
-        else{
-            req.user.books.push(book);
-            req.user.save(err=>{
-                if(err)
-                    res.status(500).json({message : {msgBody : "A doua eroare", msgError: true}});
-                else
-                    res.status(200).json({message : {msgBody : "Successfully created book", msgError : false}});
-            });
-        }
-    })
+
+	
+	
+	req.user.books.push(req.body);
+	req.user.save(err => {
+		if(err)
+			res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+        else
+			res.status(200).json({message : {msgBody : "Successfully added book", msgError : false}});
+	});
+	
+	// res.json({user , book});
+			
+
 });
 
 userRouter.get('/books',passport.authenticate('jwt',{session : false}),(req,res)=>{
