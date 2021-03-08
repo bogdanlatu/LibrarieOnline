@@ -6,8 +6,38 @@
     overflow: hidden;
 }
 
+.qrcode-page section {
+    margin-top: 10px;
+    width: 80%;
+    margin-left: 10vw;
+}
+
+.qr-code-container {
+    margin-left: 0vw;
+}
+
+.qr-code-container > p {
+    margin-left: 0vw;
+}
+
+
+
 @media (min-width: 768px) {
     .qrcode-page {
         min-height: 100vh;
+    }
+    
+    .qrcode-page section {
+    margin-top: 10px;
+    width: 30%;
+    margin-left: 32.5vw;
+    }
+    
+    .qr-code-container {
+    margin-left: 31.5vw;
+    }
+
+    .qr-code-container > p {
+    margin-left: -31vw;
     }
 }

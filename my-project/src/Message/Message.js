@@ -1,7 +1,8 @@
 import React from 'react';
+import './Message.css'
 
 const getStyle = (props)=> {
-    let baseClass = "alert ";
+    let baseClass = "alert message-custom ";
     if(props.message.msgError)
         baseClass = baseClass + "alert-danger";
     else

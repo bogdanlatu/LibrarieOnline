@@ -10,6 +10,7 @@ const NavBar = props => {
     const unauthenticatedNavBar = () => {
         return (
             <>
+                <Link to="/qrcode"><i className="fa fa-qrcode fa-fw"></i></Link>
                 <Link to="/user"><i className="fa fa-user fa-fw"></i></Link>
             </>
         )
@@ -18,15 +19,28 @@ const NavBar = props => {
     const authenticatedNavBar = () => {
         return (
             <>
-                {
+            {
+                    user.role === "user" ?
+                    <Link to="/qrcode"><i className="fa fa-qrcode fa-fw"></i></Link> : null
+            
+                }    
+            
+            {
                     user.role === "user" ?
                     <Link to="/user"><i className="fa fa-user fa-fw"></i></Link> : null
                 }
+            
                 
+                {
+                    user.role === "admin" ?
+                    <Link to="/qrcode-admin"><i className="fa fa-qrcode fa-fw"></i></Link> : null
+            
+                }
                 {
                     user.role === "admin" ?
                     <Link to="/admin"><i className="fa fa-cog fa-fw"></i></Link> : null
                 }
+                
             </>
         )
     }
@@ -37,7 +51,7 @@ const NavBar = props => {
                 
                 <Link to="/"><i className="fa fa-home fa-fw"></i></Link>
                 <Link to="/search"><i className="fa fa-search fa-fw"></i></Link>
-                <Link to="/qrcode"><i className="fa fa-qrcode fa-fw"></i></Link>
+                
                 
                 { !isAuthenticated ? unauthenticatedNavBar() : authenticatedNavBar()}
                 

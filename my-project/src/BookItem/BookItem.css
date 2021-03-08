@@ -1,0 +1,58 @@
+.book-item {
+    min-height: 440px;
+    max-height: 440px;
+    margin-bottom: 10px; 
+    margin-left: 20vw;
+    border: 5px solid black;
+}
+
+.book-item img {
+    min-height: 250px;
+    max-height: 250px;
+}
+
+.wrap {
+    position: relative;
+    display: inline-block;
+}
+
+.status {
+    
+    display: inline-block;
+}
+
+.dot-green {
+    position: absolute;
+    margin-left: 10px;
+    border: 2px solid black;
+    height: 25px;
+    width: 25px;
+    background-color: #11f505;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot-red {
+    position: absolute;
+    margin-left: 10px;
+    border: 2px solid black;
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+@media (min-width: 768px) {
+    .book-item {
+    min-height: 500px;
+    max-height: 500px;
+    margin-bottom: 10px; 
+    margin-left: 5.5vw;
+}
+
+.book-item img {
+    min-height: 300px;
+    max-height: 300px;
+}
+}

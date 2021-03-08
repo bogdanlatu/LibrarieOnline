@@ -10,9 +10,9 @@ const Book = require('../model/Book');
 //the key has to match the secretOrKey from passport
 const signToken = userID => {
 	return JWT.sign({
-		iss : "NoobCoder",
+		iss : "Bogdan",
 		sub : userID
-	},"NoobCoder", {expiresIn : "1h"});
+	},"Bogdan", {expiresIn : "1h"});
 }
 
 
@@ -52,15 +52,26 @@ userRouter.get('/logout',passport.authenticate('jwt', {session : false}),(req,re
 
 userRouter.post('/book',passport.authenticate('jwt',{session : false}),(req,res)=>{
 
+	const book = req.body;
 	
-	
-	req.user.books.push(req.body);
-	req.user.save(err => {
+	if(book.borrowedStatus == "stock"){
+		req.user.books.push(book);
+		req.user.save(err => {
 		if(err)
-			res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
-        else
-			res.status(200).json({message : {msgBody : "Successfully added book", msgError : false}});
+			res.status(500).json({message : {msgBody : "Error has occured on saving the book", msgError: true}});
+        else{
+			Book.findOneAndUpdate({_id : req.body._id},{$set: {borrowedStatus : "borrowed"}}, {new: true}, (err,doc) => {
+				if(err){
+					res.status(500).json({message : {msgBody : "Error on modifying status", msgError : false}});
+				}
+				res.status(200).json({message : {msgBody : "Successfully added book", msgError : false}});
+			});
+		}
 	});
+	} else {
+		res.status(200).json({message : {msgBody : "Book is already borrowed", msgError : true}});
+	}
+	
 	
 	// res.json({user , book});
 			
@@ -68,7 +79,7 @@ userRouter.post('/book',passport.authenticate('jwt',{session : false}),(req,res)
 });
 
 userRouter.get('/books',passport.authenticate('jwt',{session : false}),(req,res)=>{
-	User.findById({_id : req.user._id}).populate('books').exec((err,document)=>{
+	User.findById({_id : req.user._id}).populate({path: 'books', options: {sort: {'_id': 1}}}).exec((err,document)=>{
 		if(err)
 			res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
 		else{
@@ -76,6 +87,102 @@ userRouter.get('/books',passport.authenticate('jwt',{session : false}),(req,res)
 		}
 	});
 });
+
+userRouter.get('/search/:query',(req,res)=>{
+	const page = parseInt(req.query.page);
+	const limit = parseInt(req.query.limit);
+	const query = req.params.query;
+	
+	const startIndex = (page - 1) * limit;
+	const endIndex = page * limit;
+	
+	const results = {}
+	
+
+	if (startIndex > 0) {		
+		results.previous = {
+			page: page - 1,
+			limit: limit
+		}
+	}
+	
+    Book.find({ $or: [
+		{title : new RegExp(query, "i")},
+		{author : new RegExp(query, "i")}
+	]}).exec((err, books) => {
+        if (err) {
+            res.status(500).send({error: "Could not fetch books"});
+        } else {
+			
+/* 		let booksLength=books.length;
+			let booksToFilter = [];
+			let booksToSend = [];
+			
+			for (let i = 0; i<booksLength; i++){
+				if(!booksToFilter.includes(books[i].bookID)){
+					booksToFilter.push(books[i].bookID);
+				booksToSend.push(books[i]);}
+			}
+			
+			res.json(booksToSend);	 */
+			
+		const booksLength = books.length;
+				
+		if (endIndex < booksLength){
+			results.next = {
+				page: page + 1,
+				limit: limit
+			}
+			results.results = books.slice(startIndex,endIndex);
+			res.json(results);
+		}
+		else {
+			results.results = books.slice(startIndex,endIndex);
+			res.json(results);
+		}
+	
+        }
+    });
+});
+
+userRouter.get('/book/:bookId',passport.authenticate('jwt',{session : false}),(req,res)=>{
+	const bookId = req.params.bookId;
+	
+	Book.findById({_id : bookId}).exec((err,document)=>{
+		if(err)
+			res.status(500).json({message : {msgBody : "Error has occured", msgError: true}});
+		else
+			res.status(200).json({book: document});
+	});
+});
+
+/* userRouter.get('/search/:query',(req,res)=>{
+	const query = req.params.query;
+	
+	Book.find({ $or: [
+		{title : new RegExp(query, "i")},
+		{author : new RegExp(query, "i")}
+	]}).exec((err, books) => {
+        if (err) {
+            res.status(500).send({error: "Could not fetch books"});
+        } else {
+			let idSet = [...new Set(books.map(item => item.bookID))];;
+			
+			let booksToFilter = [];
+			
+			let getUniqueBook =  (value1, value2, set) => {
+				booksToFilter.push(value1);
+				
+			}
+			
+			idSet.forEach(getUniqueBook);
+			
+			res.json(books);
+		}
+		
+	});
+	
+}); */
 
 userRouter.get('/admin',passport.authenticate('jwt',{session : false}),(req,res)=>{
 	if(req.user.role === 'admin'){

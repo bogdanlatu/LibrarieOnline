@@ -1,6 +1,7 @@
 import React, {useState,useEffect} from 'react';
-import './qrcode.css';
+import './qrcode-admin.css';
 import QrReader from 'react-qr-reader';
+import AdminService from '../Services/AdminService';
 import UserService from '../Services/UserService';
 
 //Components
@@ -8,7 +9,7 @@ import BookItem from '../BookItem/BookItem';
 import Message from '../Message/Message';
 
 
-const QrCode = props => {
+const QrCodeAdmin = props => {
     
       //use these variables to get our books from database
   const [book,setBook] = useState();
@@ -49,7 +50,7 @@ const QrCode = props => {
     
     const onClickHandler = () => {
         console.log(book);
-        UserService.postBook(book).then(data => {
+        AdminService.updateBook(book).then(data => {
          setMessage(data.message);
          console.log(data); 
       });
@@ -77,11 +78,11 @@ const QrCode = props => {
         <button type="button" 
                 className="btn btn-primary"
                 style={{display : result ? "" : "none"}}
-                onClick={onClickHandler}>Rent This Book</button>
+                onClick={onClickHandler}>Put back in stock</button>
 
             
       </div>
     );
 }
 
-export default QrCode;
+export default QrCodeAdmin;

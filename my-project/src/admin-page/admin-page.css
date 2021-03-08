@@ -4,12 +4,39 @@
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    color: white;
 }
 
+.admin-page a {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+}
+
+.admin-page button {
+    margin-top: 10px;
+    
+}
+
+.admin-page input {
+    border-width: 2px;
+    border-color: black;
+    margin-bottom: 1px;
+}
+
+.admin-page i {
+    color: white;
+    font-size: 30px;
+}
 
 
 @media (min-width: 768px) {
     .admin-page {
         min-height: 100vh;
+    }
+    
+    .admin-page input {
+        margin-left: 20%;
+        width: 60%;
     }
 }

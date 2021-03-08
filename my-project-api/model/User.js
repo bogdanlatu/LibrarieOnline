@@ -17,7 +17,25 @@ const UserSchema = new mongoose.Schema({
 		enum : ['user','admin'],
 		required : true
 	},
-	books : [{type : mongoose.Schema.Types.ObjectId, ref: 'Book'}]
+	books : [{type : mongoose.Schema.Types.ObjectId, ref: 'Book'}],
+	userID : {
+		type : Number
+	},
+	fullName : {
+		type : String
+	},
+	address : {
+		type : String
+	},
+	cnp : {
+		type : String
+	},
+	libraryID : {
+		type : String
+	},
+	email : {
+		type : String
+	}
 });
 
 //check if password is hashed before saving into db

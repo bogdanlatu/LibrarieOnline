@@ -1,0 +1,16 @@
+.admin-item {
+    margin-left: 28px;
+}
+
+.admin-item ul li {
+    min-width: 12vw;
+
+}
+
+.admin-item img {
+    max-height: 10vh;
+}
+
+.admin-item textarea {
+    resize: none;
+}

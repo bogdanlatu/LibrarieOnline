@@ -40,21 +40,20 @@ const LoginPage = props => {
             <form onSubmit={onSubmit}>
                 <h3>Please sign in</h3>
                 
-                <label htmlFor="username" className="sr-only">Username: </label>
                 <input type="text" 
                         name="username" 
                         onChange={onChange} 
                         className="form-control" 
                         placeholder="Enter Username"/>
                 
-                <label htmlFor="password" className="sr-only">Password: </label>
+                
                 <input type="password" 
                         name="password" 
                         onChange={onChange} 
                         className="form-control" 
                         placeholder="Enter Password"/>
                 
-                <button className="btn btn-lg btn-primary btn-block" 
+                <button className="btn btn-lg btn-primary" 
                         type="submit">Log in</button>
                 
             </form>

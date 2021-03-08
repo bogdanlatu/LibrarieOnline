@@ -7,6 +7,7 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Home from '../home/home';
 import Search from '../search/search';
 import QrCode from '../qrcode/qrcode';
+import QrCodeAdmin from '../qrcode-admin/qrcode-admin';
 import UserPage from '../user/user';
 import LoginPage from '../login-page/login-page';
 import RegisterPage from '../register-page/register-page';
@@ -41,6 +42,7 @@ class PageContainer extends Component {
                         <UnPrivateRoute path="/login" component={LoginPage} />
                         <UnPrivateRoute path="/register" component={RegisterPage} />
                         <PrivateRoute path="/admin" roles={["admin"]} component={AdminPage} />
+                        <PrivateRoute path="/qrcode-admin" roles={["admin"]} component={QrCodeAdmin} />
                     </Switch>
                     </section>
                     

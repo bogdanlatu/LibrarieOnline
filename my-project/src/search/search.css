@@ -7,8 +7,32 @@
     padding-top: 250px;
 }
 
+.search-page input {
+    margin-top: -230px;
+    padding-bottom: -800px;
+}
+
+.search-page .container {
+    margin-bottom: -140px;
+}
+
+.search-page a {
+    margin-top: 10px;
+    background-color: black;
+    color: white;
+}
+
+.search-page i {
+    color: white;
+    font-size: 30px;
+}
+
 @media (min-width: 768px) {
     .search-page {
         min-height: 100vh;
     }
+    
+    .search-page input {
+    margin-top: -230px;
+}
 }

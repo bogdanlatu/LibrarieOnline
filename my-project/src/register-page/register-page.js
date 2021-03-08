@@ -48,7 +48,7 @@ const RegisterPage = props => {
             <form onSubmit={onSubmit}>
                 <h3>Please Register</h3>
                 
-                <label htmlFor="username" className="sr-only">Username: </label>
+                
                 <input type="text" 
                         name="username"
                         value={user.username}
@@ -56,7 +56,7 @@ const RegisterPage = props => {
                         className="form-control" 
                         placeholder="Enter Username"/>
                 
-                <label htmlFor="password" className="sr-only">Password: </label>
+                
                 <input type="password" 
                         name="password"
                         value={user.password}
@@ -64,7 +64,7 @@ const RegisterPage = props => {
                         className="form-control" 
                         placeholder="Enter Password"/>
                 
-                <label htmlFor="role" className="sr-only">Role: </label>
+                
                 <input type="text" 
                         name="role"
                         value={user.role}
@@ -72,7 +72,7 @@ const RegisterPage = props => {
                         className="form-control" 
                         placeholder="Enter role(admin/user)"/>
                 
-                <button className="btn btn-lg btn-primary btn-block" 
+                <button className="btn btn-lg btn-primary" 
                         type="submit">Register</button>
                 
             </form>     

@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import AuthService from '../Services/AuthService';
 import { AuthContext } from '../Context/AuthContext';
 import { useHistory } from 'react-router-dom';
+import './LogoutButton.css';
 
 
 const LogoutButton = props =>{
@@ -21,7 +22,7 @@ const LogoutButton = props =>{
     
     return(
         <button type="button" 
-                className="btn btn-link" 
+                className="btn btn-danger custom" 
                 onClick={onClickLogoutHandler}>Logout</button>
     )
 }
